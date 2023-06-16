@@ -1,14 +1,22 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
+import { fetchContacts } from './redux/thunks';
+import { getContacts, getError, getIsLoading } from './redux/selectors';
 
 
 
 export function App() {
 
+  const dispatch=useDispatch();
+  const loading=useSelector(getIsLoading);
+  const error=useSelector(getError);
+  const items=useSelector(getContacts)
+
+  useEffect(()=>dispatch(fetchContacts()),[dispatch])
   return (
     <div
       style={{
@@ -28,12 +36,15 @@ export function App() {
       <h2>Contacts</h2>
 
       <Filter  />
-      <ContactList  />
+      {loading&&<div>loading</div>}
+      {error&&<div>error</div>}
+      {items.length>0&&!error&& <ContactList  />}
+     
     </div>
   );
 }
 
-// export class App extends Component {
+ // export class App extends Component { */}
 //   state = {
 //     contacts: [],
 //     filter: '',

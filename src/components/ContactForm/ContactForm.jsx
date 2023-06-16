@@ -1,5 +1,5 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
+
 
 import {
   FormContainer,
@@ -10,25 +10,35 @@ import {
 
 
 
-import { useDispatch } from 'react-redux';
-import { addContact } from 'components/redux/contactsSlice.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'components/redux/thunks.js';
+import { getContacts } from 'components/redux/selectors.js';
 
 
 export function ContactForm() {
   const dispatch=useDispatch();
+  const contacts=useSelector(getContacts);
 
 
   const handleSubmit = e => {
     e.preventDefault();
     const form=e.target;
-
-    dispatch(addContact({
-      name:e.target.elements.name.value.toString(),
-      number:e.target.elements.number.value.toString(),
-      id: nanoid(),
-    }))  
-
-    form.reset();
+    const isContact = contacts.filter(
+          contact =>
+            contact.name.toLowerCase() === e.target.elements.name.value.toLowerCase()
+        );
+        
+        if (isContact.length > 0) {
+              alert('The contact has already existed');
+              return;
+            } else {
+              dispatch(addContact({
+                name:e.target.elements.name.value,
+                phone:e.target.elements.number.value,
+                
+              })) 
+               form.reset();
+            }  
   };
 
   return (

@@ -1,10 +1,11 @@
 
 import { useDispatch } from 'react-redux';
 
-import { removeContact } from 'components/redux/contactsSlice.js';
+
 import { useSelector } from 'react-redux';
 
 import { ListContainer, ListItem, ListButton } from './ContactList.styled.jsx';
+import { deleteContact } from 'components/redux/thunks.js';
 
 export function ContactList() {
   const filterState=useSelector(state=>state.filters)
@@ -16,7 +17,7 @@ export function ContactList() {
  
   const dispatch=useDispatch();
   const handleClick = e => {
-    dispatch(removeContact(e.currentTarget.id));
+    dispatch(deleteContact(e.currentTarget.id));
   };
 
   return (

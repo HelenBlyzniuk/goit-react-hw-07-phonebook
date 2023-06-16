@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
-import { deleteContact, fetchContacts } from './thunks';
+import { deleteContact, fetchContacts,addContact } from './thunks';
 import { handleContactAdd,handleContactFetch,handleDeleteContact,handlePending,handleRejected } from './handlers';
 
 const contactSlice = createSlice({
@@ -40,5 +40,5 @@ const contactSlice = createSlice({
   },
 });
 
-export const { addContact, removeContact } = contactSlice.actions;
+
 export const contactReducer = contactSlice.reducer;
