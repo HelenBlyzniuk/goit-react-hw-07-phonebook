@@ -13,7 +13,7 @@ export function App() {
   const loading = useSelector(getIsLoading);
   const error = useSelector(getError);
   const items = useSelector(getContacts);
-  console.log("items",items.length)
+ 
 
   useEffect(() => {
   dispatch(fetchContacts());

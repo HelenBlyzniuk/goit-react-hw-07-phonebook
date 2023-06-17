@@ -22,7 +22,7 @@ export function ContactList() {
     dispatch(deleteContact(e.currentTarget.id));
     
   };
-  console.log(contacts)
+ 
   return (
     <ListContainer>
       List of contacts
