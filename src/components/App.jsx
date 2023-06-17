@@ -13,7 +13,9 @@ export function App() {
   const error = useSelector(getError);
   const items = useSelector(getContacts);
 
-  useEffect(() => dispatch(fetchContacts()), [dispatch]);
+  useEffect(() => {
+  dispatch(fetchContacts());
+}, [dispatch]);
   return (
     <div
       style={{

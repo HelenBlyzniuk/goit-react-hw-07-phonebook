@@ -24,9 +24,9 @@ export function ContactList() {
   return (
     <ListContainer>
       List of contacts
-      {visibleContacts.map(({ name, number, id }) => (
+      {visibleContacts.map(({ name, phone, id }) => (
         <ListItem id={id} key={id}>
-          {name}: {number}
+          {name}: {phone}
           <ListButton
             type="button"
             className="deleteContact"

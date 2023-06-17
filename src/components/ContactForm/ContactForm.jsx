@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { nanoid } from 'nanoid';
 
 import {
   FormContainer,
@@ -33,9 +33,10 @@ export function ContactForm() {
               return;
             } else {
               dispatch(addContact({
+                createdAt:Date(),
                 name:e.target.elements.name.value,
                 phone:e.target.elements.number.value,
-                
+                id:nanoid()
               })) 
                form.reset();
             }  
