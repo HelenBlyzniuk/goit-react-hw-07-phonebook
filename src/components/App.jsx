@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
+import { Loader } from './Loader/Loader';
 import { Filter } from './Filter/Filter';
 import { fetchContacts } from './redux/thunks';
 import { getContacts, getError, getIsLoading } from './redux/selectors';
@@ -36,6 +37,7 @@ export function App() {
       <h2>Contacts</h2>
 
       <Filter />
+      <Loader/>
       {loading && <div>loading</div>}
       {error && <div>error</div>}
       {items.length > 0 && !error && <ContactList />}

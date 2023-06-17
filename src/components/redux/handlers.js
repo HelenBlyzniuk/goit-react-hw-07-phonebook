@@ -17,5 +17,5 @@ export function handlePending(state) {
   }
  export function handleDeleteContact(state,{payload}){
     state.isLoading = false;
-      return state.items.filter(contact => contact.id !== payload);
+    state.items=state.items.filter(contact => contact.id !== payload);
   }

@@ -11,6 +11,7 @@ import { getContacts, getFilter } from 'components/redux/selectors.js';
 export function ContactList() {
   const filterState=useSelector(getFilter)
   const contacts =useSelector(getContacts)
+  
  
   const normalizedFilter = filterState.toLowerCase();
   const visibleContacts = contacts.filter(contact =>
@@ -19,8 +20,9 @@ export function ContactList() {
   const dispatch=useDispatch();
   const handleClick = e => {
     dispatch(deleteContact(e.currentTarget.id));
+    
   };
-
+  console.log(contacts)
   return (
     <ListContainer>
       List of contacts
