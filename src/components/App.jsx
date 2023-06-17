@@ -5,8 +5,10 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Loader } from './Loader/Loader';
 import { Filter } from './Filter/Filter';
+import { Error } from './Error/Error';
 import { fetchContacts } from './redux/thunks';
 import { getContacts, getError, getIsLoading } from './redux/selectors';
+
 
 export function App() {
   const dispatch = useDispatch();
@@ -23,7 +25,7 @@ export function App() {
       style={{
         height: '100vh',
         display: 'block',
-        width: '600px',
+        maxWidth: '600px',
         marginLeft: 'auto',
         marginRight: 'auto',
         fontSize: 30,
@@ -37,9 +39,8 @@ export function App() {
       <h2>Contacts</h2>
 
       <Filter />
-      <Loader/>
-      {loading && <div>loading</div>}
-      {error && <div>error</div>}
+      {loading && <Loader/>}
+      {error && <Error/>}
       {items.length > 0 && !error && <ContactList />}
     </div>
   );
