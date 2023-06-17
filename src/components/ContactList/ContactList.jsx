@@ -6,10 +6,11 @@ import { useSelector } from 'react-redux';
 
 import { ListContainer, ListItem, ListButton } from './ContactList.styled.jsx';
 import { deleteContact } from 'components/redux/thunks.js';
+import { getContacts, getFilter } from 'components/redux/selectors.js';
 
 export function ContactList() {
-  const filterState=useSelector(state=>state.filters)
-  const contacts =useSelector(state=>state.contacts)
+  const filterState=useSelector(getFilter)
+  const contacts =useSelector(getContacts)
  
   const normalizedFilter = filterState.toLowerCase();
   const visibleContacts = contacts.filter(contact =>

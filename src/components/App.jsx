@@ -7,16 +7,13 @@ import { Filter } from './Filter/Filter';
 import { fetchContacts } from './redux/thunks';
 import { getContacts, getError, getIsLoading } from './redux/selectors';
 
-
-
 export function App() {
+  const dispatch = useDispatch();
+  const loading = useSelector(getIsLoading);
+  const error = useSelector(getError);
+  const items = useSelector(getContacts);
 
-  const dispatch=useDispatch();
-  const loading=useSelector(getIsLoading);
-  const error=useSelector(getError);
-  const items=useSelector(getContacts)
-
-  useEffect(()=>dispatch(fetchContacts()),[dispatch])
+  useEffect(() => dispatch(fetchContacts()), [dispatch]);
   return (
     <div
       style={{
@@ -31,20 +28,19 @@ export function App() {
     >
       <h1>Phonebook</h1>
 
-      <ContactForm  />
+      <ContactForm />
 
       <h2>Contacts</h2>
 
-      <Filter  />
-      {loading&&<div>loading</div>}
-      {error&&<div>error</div>}
-      {items.length>0&&!error&& <ContactList  />}
-     
+      <Filter />
+      {loading && <div>loading</div>}
+      {error && <div>error</div>}
+      {items.length > 0 && !error && <ContactList />}
     </div>
   );
 }
 
- // export class App extends Component { */}
+// export class App extends Component { */}
 //   state = {
 //     contacts: [],
 //     filter: '',
